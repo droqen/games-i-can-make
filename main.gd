@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		impossiblegoal.radius = 278
 		impossiblegoal.modulate.a = 0.0
 		#impossiblegoal.score = int(impossiblegoal.score * randf_range(0.0,2.0))
-	else:
+	elif not goalfree:
 		impossiblegoal.radius *= 0.9999
 		if impossiblegoal.modulate.a < 1:
 			impossiblegoal.modulate.a += 0.05
