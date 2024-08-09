@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv8kyq2tpsx8e"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_6aqfw"]
+[ext_resource type="Material" uid="uid://ee62sy42l35c" path="res://venn_material.tres" id="2_jbal2"]
+[ext_resource type="Script" path="res://venn_set.gd" id="3_lkglq"]
+[ext_resource type="LabelSettings" uid="uid://txvfed65g53r" path="res://venn_label.tres" id="4_10q4v"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_6aqfw")
+
+[node name="market" type="Node2D" parent="."]
+material = ExtResource("2_jbal2")
+position = Vector2(-56, 220)
+script = ExtResource("3_lkglq")
+radius = 278.0
+colour = Color(0.2886, 0.2886, 0.78, 1)
+alpha = 0.5
+
+[node name="Label" type="Label" parent="market"]
+offset_left = -150.0
+offset_top = -115.0
+offset_right = 150.0
+offset_bottom = 30.0
+text = "Games With
+A Market"
+label_settings = ExtResource("4_10q4v")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="market"]
+offset_left = -150.0
+offset_top = 62.0
+offset_right = 150.0
+offset_bottom = 207.0
+text = "0"
+label_settings = ExtResource("4_10q4v")
+horizontal_alignment = 1
+
+[node name="want" type="Node2D" parent="."]
+material = ExtResource("2_jbal2")
+position = Vector2(511, -198)
+script = ExtResource("3_lkglq")
+radius = 278.0
+colour = Color(0.3763, 0.71, 0.3763, 1)
+alpha = 0.5
+
+[node name="Label2" type="Label" parent="want"]
+z_index = 1
+offset_left = -200.0
+offset_top = -107.0
+offset_right = 200.0
+offset_bottom = 38.0
+text = "Games You 
+Want To Make"
+label_settings = ExtResource("4_10q4v")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="want"]
+z_index = 1
+offset_left = -296.0
+offset_top = 63.0
+offset_right = 104.0
+offset_bottom = 208.0
+text = "0"
+label_settings = ExtResource("4_10q4v")
+horizontal_alignment = 1
+
+[node name="can" type="Node2D" parent="."]
+material = ExtResource("2_jbal2")
+position = Vector2(166, 882)
+script = ExtResource("3_lkglq")
+radius = 278.0
+colour = Color(0.74, 0.2664, 0.511093, 1)
+alpha = 0.5
+
+[node name="Label" type="Label" parent="can"]
+offset_left = -150.0
+offset_top = -162.0
+offset_right = 150.0
+offset_bottom = -17.0
+text = "Games You 
+Can Make"
+label_settings = ExtResource("4_10q4v")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="can"]
+z_index = 1
+offset_left = -184.0
+offset_top = 43.0
+offset_right = 216.0
+offset_bottom = 188.0
+text = "0"
+label_settings = ExtResource("4_10q4v")
+horizontal_alignment = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)

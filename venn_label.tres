@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://txvfed65g53r"]
+
+[ext_resource type="FontFile" uid="uid://b07t4082tmlsb" path="res://BreeSerif-Regular.ttf" id="1_rluld"]
+
+[resource]
+font = ExtResource("1_rluld")
+font_size = 52
+font_color = Color(0.929412, 0.941176, 0.945098, 1)
+outline_size = 1
+outline_color = Color(0.929412, 0.941176, 0.945098, 1)
