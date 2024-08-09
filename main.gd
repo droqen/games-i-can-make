@@ -55,23 +55,27 @@ func _physics_process(delta: float) -> void:
 		canmake.radius = lerp(canmake.radius, 278.0, 0.01)
 		if wantmake.radius > 278.0:
 			wantmake.radius = lerp(wantmake.radius, 278.0, 0.01)
-		
 		if impossiblegoal.modulate.a < 1: impossiblegoal.modulate.a += 0.01
 	else:
 		canmake.radius += 1
 		wantmake.radius += 1
-		if impossiblegoal.modulate.a > 0: impossiblegoal.modulate.a -= 0.01
-		elif not goalfree: venns.erase(impossiblegoal); goalfree = true;
+		if canmake.radius > 300:
+			if not goalfree: venns.erase(impossiblegoal); goalfree = true;
+		if impossiblegoal.modulate.a > 0:
+			impossiblegoal.modulate.a -= 0.01
 	camvel *= 0.90
 	camvel = lerp(camvel, camgoal - $Camera2D.position, 0.01)
 	$Camera2D.position += camvel
+	
+	if randf() < 0.001 and impossiblegoal.score2 > 0:
+		impossiblegoal.score2 -= 1
 	
 	if randf() < 0.001 and timescale >= 0.9:
 		impossiblegoal.position = Vector2(randf_range(-500,500), randf_range(-500,500))
 		impossiblegoal.vel = Vector2.RIGHT.rotated(randf()*TAU)*randf_range(0.1,0.2)
 		impossiblegoal.radius = 278
 		impossiblegoal.modulate.a = 0.0
-		impossiblegoal.score = 0
+		#impossiblegoal.score = int(impossiblegoal.score * randf_range(0.0,2.0))
 	else:
 		impossiblegoal.radius *= 0.9999
 		if impossiblegoal.modulate.a < 1:
@@ -87,6 +91,7 @@ func _physics_process(delta: float) -> void:
 	
 	if check_flash:
 		var yes_can_make : bool = false
+		var yes_want_make : bool = false
 		for venset in venns:
 			var tomouse : Vector2 = get_global_mouse_position() - venset.position
 			if tomouse.length_squared() < venset.radius*venset.radius:
@@ -97,13 +102,19 @@ func _physics_process(delta: float) -> void:
 						goalfreepingcount += 1
 						if goalfreepingcount == 10:
 							windfish_awakened.emit()
+							print("game over")
+							#$can/Score.show()
+							$want/Score.show()
+					if venset == impossiblegoal:
+						if yes_want_make: impossiblegoal.score2 += 1
+				if venset == wantmake:
+					yes_want_make = true
 	
 	var can_to_mouse = get_global_mouse_position() - canmake.position
 	canmake.vel = lerp(canmake.vel * 0.90, can_to_mouse.limit_length(100.0) * 0.1, 0.01)
 
 	var can_to_want : Vector2 = wantmake.position - canmake.position
 	var c2w_dist_sqr = can_to_want.length_squared()
-	prints(can_to_want, c2w_dist_sqr)
 	if c2w_dist_sqr > 0:
 		wantmake.vel += can_to_want / c2w_dist_sqr * 150.0 - can_to_want * 0.0003
 	wantmake.vel *= 0.90

@@ -5,6 +5,7 @@ class_name VennSet
 var vel : Vector2
 var flash : float = 0.0
 var score : int = 0
+var score2 : int = 0
 
 @export var radius : float = 10.0
 @export var colour : Color = Color.RED
@@ -20,7 +21,14 @@ func _physics_process(_delta: float) -> void:
 		if flash > 0.0: flash -= 0.02
 		if flash < 0.0: flash = 0.0
 		if score > 0:
-			$Score.text = str(score) + "p"
+			if name == 'want':
+				$Score.text = '%d you love' % score
+			elif name == 'can':
+				$Score.text = 'made %d games in total' % score
+			elif score2 > 0:
+				$Score.text = '%d released,\n %d you like'%[score,score2]
+			else:
+				$Score.text = '%d released\n'%[score]
 		else:
 			$Score.text = ''
 

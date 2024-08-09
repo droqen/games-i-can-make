@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv8kyq2tpsx8e"]
+[gd_scene load_steps=7 format=3 uid="uid://bv8kyq2tpsx8e"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6aqfw"]
 [ext_resource type="Material" uid="uid://ee62sy42l35c" path="res://venn_material.tres" id="2_jbal2"]
 [ext_resource type="Script" path="res://venn_set.gd" id="3_lkglq"]
 [ext_resource type="LabelSettings" uid="uid://txvfed65g53r" path="res://venn_label.tres" id="4_10q4v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yb1vx"]
+font_size = 32
+font_color = Color(0.929412, 0.941176, 0.945098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8nh85"]
+font_size = 32
+font_color = Color(0.929412, 0.941176, 0.945098, 1)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_6aqfw")
@@ -27,13 +35,13 @@ label_settings = ExtResource("4_10q4v")
 horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="market"]
-offset_left = -150.0
-offset_top = 62.0
-offset_right = 150.0
-offset_bottom = 207.0
-text = "0"
-label_settings = ExtResource("4_10q4v")
-horizontal_alignment = 1
+offset_left = -80.0
+offset_top = 46.0
+offset_right = 220.0
+offset_bottom = 191.0
+text = "0 released,
+0 you liked"
+label_settings = SubResource("LabelSettings_yb1vx")
 
 [node name="want" type="Node2D" parent="."]
 material = ExtResource("2_jbal2")
@@ -55,14 +63,15 @@ label_settings = ExtResource("4_10q4v")
 horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="want"]
+visible = false
 z_index = 1
-offset_left = -296.0
-offset_top = 63.0
-offset_right = 104.0
-offset_bottom = 208.0
-text = "0"
-label_settings = ExtResource("4_10q4v")
-horizontal_alignment = 1
+offset_left = -317.0
+offset_top = 56.0
+offset_right = 83.0
+offset_bottom = 201.0
+text = "0 you love"
+label_settings = SubResource("LabelSettings_8nh85")
+horizontal_alignment = 2
 
 [node name="can" type="Node2D" parent="."]
 material = ExtResource("2_jbal2")
@@ -83,6 +92,7 @@ label_settings = ExtResource("4_10q4v")
 horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="can"]
+visible = false
 z_index = 1
 offset_left = -184.0
 offset_top = 43.0
